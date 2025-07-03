@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/constants/colors.dart';
 
 class WorksPage extends StatefulWidget {
   const WorksPage({super.key});
@@ -8,13 +9,12 @@ class WorksPage extends StatefulWidget {
 }
 
 class _WorksPageState extends State<WorksPage> {
-  
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 600,
       width: double.maxFinite,
-      color: Colors.white,
+      color: MyColor.scaffold,
       child: Center(
           child: ElevatedButton(onPressed: () {}, child: Text('change theme'))),
     );

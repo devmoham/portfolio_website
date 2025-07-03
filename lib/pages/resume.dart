@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_website/constants/colors.dart';
 import 'package:portfolio_website/widgets/card_item_widget.dart';
 
-class ResumePge extends StatelessWidget {
-  const ResumePge({super.key});
+class ResumePage extends StatelessWidget {
+  const ResumePage({super.key});
 
   @override
   Widget build(BuildContext context) {

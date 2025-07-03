@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:portfolio_website/constants/colors.dart';
+import 'package:portfolio_website/models/skill_item_model.dart';
+import 'package:portfolio_website/widgets/skill_item.dart';
 
 class SkillsPage extends StatefulWidget {
   const SkillsPage({super.key});
@@ -11,57 +13,46 @@ class SkillsPage extends StatefulWidget {
 }
 
 class _SkillsPageState extends State<SkillsPage> {
-  List<String> numbers = [
-    '92%',
-    '99%',
-    '85%',
-    '95%',
-    '100%',
+  final int index = 0;
+  final List<SkillItemModel> skillItems = const [
+    SkillItemModel(
+      title: 'Flutter',
+      image: 'assets/images/skills/icons8-flutter-96.png',
+      rate: '97%',
+    ),
+    SkillItemModel(
+      title: 'Dart',
+      image: 'assets/images/skills/dart.png',
+      rate: '95%',
+    ),
+    SkillItemModel(
+      title: 'Firebase',
+      image: 'assets/images/skills/firebase.png',
+      rate: '96%',
+    ),
+    SkillItemModel(
+      title: 'Git',
+      image: 'assets/images/skills/git.png',
+      rate: '93%',
+    ),
+    SkillItemModel(
+      title: 'Postman',
+      image: 'assets/images/skills/pngwing.com.png',
+      rate: '90%',
+    ),
+    SkillItemModel(
+      title: 'Figma',
+      image: 'assets/images/skills/icons8-figma-48.png',
+      rate: '90%',
+    ),
   ];
-
-  List<String> imageList = [
-    'assets/images/skills/icons8-figma-48.png',
-    'assets/images/skills/icons8-flutter-96.png',
-    'assets/images/skills/dart.png',
-    'assets/images/skills/android-studio-icon.png',
-    'assets/images/skills/pngwing.com.png',
-  ];
-
-  List<Color> _colorsText = [
-    MyColor.purple,
-    MyColor.purple,
-    MyColor.purple,
-    MyColor.purple,
-    MyColor.purple,
-  ];
-
-  List<Color> _colors = [
-    MyColor.scaffold,
-    MyColor.scaffold,
-    MyColor.scaffold,
-    MyColor.scaffold,
-    MyColor.scaffold,
-  ];
-
-  void _onEnter(int index) {
-    setState(() {
-      _colors[index] = MyColor.purple;
-      _colorsText[index] = MyColor.scaffold; // Change text color on hover
-    });
-  }
-
-  void _onExit(int index) {
-    setState(() {
-      _colors[index] = MyColor.scaffold;
-      _colorsText[index] = MyColor.purple; // Reset text color when not hovered
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
-      height: MediaQuery.of(context).size.height * 0.6,
-      width: MediaQuery.of(context).size.width,
+      // height: size.height * 0.75,
+      width: size.width,
       color: Colors.white,
       child: Column(
         children: [
@@ -96,114 +87,52 @@ class _SkillsPageState extends State<SkillsPage> {
                 .copyWith(fontWeight: FontWeight.normal, fontSize: 20),
           ),
           const SizedBox(height: 30),
-          SizedBox(
-            height: 240,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.only(left: 310),
-              itemCount: _colors.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0, right: 19),
-                  child: MouseRegion(
-                    onEnter: (_) => _onEnter(index),
-                    onExit: (_) => _onExit(index),
-                    child: Container(
-                      width: 240,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: _colors[index],
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 30,
-                            left: 75,
-                            child: Image.asset(
-                              imageList[index],
-                              fit: BoxFit.contain,
-                              height: 90,
-                              width: 90,
-                            ),
-                          ),
-                          Positioned(
-                            top: 150,
-                            left: 100,
-                            child: Text(
-                              numbers[index],
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: _colorsText[index],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+          Row(
+            children: skillItems.asMap().entries.map((entry) {
+              final index = entry.key;
+              final skillItem = entry.value;
+
+              if (index == 5) {
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 15, left: 15),
+                    child: SkillItem(
+                      skillItem: skillItem,
+                      isHover: false,
                     ),
                   ),
                 );
-              },
-            ),
+              }
+
+              return Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: SkillItem(
+                    skillItem: skillItem,
+                    isHover: false,
+                  ),
+                ),
+              );
+            }).toList(),
           ),
-          SizedBox(
-            height: 40,
-            child: Row(
-              children: [
-                SizedBox(width: 405),
-                Text(
-                  'Figma',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: MyColor.purple),
-                ),
-                SizedBox(
-                  width: 200,
-                ),
-                Text(
-                  'Flutter',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: MyColor.purple),
-                ),
-                SizedBox(
-                  width: 230,
-                ),
-                Text(
-                  'Dart',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: MyColor.purple),
-                ),
-                SizedBox(
-                  width: 195,
-                ),
-                Text(
-                  'Android Studio',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: MyColor.purple),
-                ),
-                SizedBox(
-                  width: 160,
-                ),
-                Text(
-                  'Postman',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: MyColor.purple),
-                ),
-                SizedBox(width: 405),
-              ],
-            ),
-          )
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: skillItems.asMap().entries.map((entry) {
+              final index = entry.key;
+              final skillItem = entry.value;
+              return Text(
+                '${skillItem.title}',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: MyColor.purple,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 17),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 50),
         ],
       ),
     );

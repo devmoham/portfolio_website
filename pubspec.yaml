@@ -31,9 +31,10 @@ dependencies:
   animated_text_kit: ^4.2.2
   carousel_slider: ^5.0.0
   cupertino_icons: ^1.0.6
+  expandable_page_view: ^1.0.17
   flutter:
     sdk: flutter
-  font_awesome_flutter: ^10.7.0
+  font_awesome_flutter: ^10.8.0
   smooth_page_indicator: ^1.2.0+3
   url_launcher: ^6.3.0
 
@@ -60,6 +61,10 @@ flutter:
     - assets/images/skills/icons8-figma-48.png
     - assets/images/skills/icons8-flutter-96.png
     - assets/images/skills/pngwing.com.png
+    - assets/images/skills/firebase.png
+    - assets/images/skills/git.png
+    - assets/images/skills/github.png
+
     - assets/images/ROKAYA-Photoroom.png
     - assets/images/icons8-marriott-hotels-48.png
     - assets/images/icons8-linkedin-30.png

@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_website/pages/home_page.dart';
+import 'package:portfolio_website/views/portfolio_view.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyPortfolio());
 }
 
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyPortfolio extends StatelessWidget {
+  const MyPortfolio({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Portfolio',
-     
-      home: const HomePage(),
+      home:  PortfolioView(),
     );
   }
 }
